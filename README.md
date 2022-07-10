@@ -50,20 +50,51 @@ X_resampled, y_resampled = random_oversampler.fit_resample(X_train, y_train)
 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
 
 * Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+  * Uses the original training data
+  * The precision and the recall for 0 (healthy loan) are better than that for 1 (high-risk loan). The precision for the 0 values is 1 which means that out of all the times that the model predicted a testing data to be the value 0, 100% of those predictions were correct. On the other hand, out of all the times that the model predicted a value of 1, only 85% of those predictions were correct.
+
+  _
+
+  ```
+                     pre       rec       spe        f1       geo       iba       sup
+
+          0         1.00      0.99      0.91      1.00      0.95      0.91     18765
+          1         0.85      0.91      0.99      0.88      0.95      0.90       619
+        
+        avg/total   0.99      0.99      0.91      0.99      0.95      0.91     19384
+
+  ```
 
 
 
 * Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
+  * This model uses the `RandomOverSampler` module from the imbalanced-learn library to resample the data.
+  * The precision and the recall for 0 (healthy loan) are better than that for 1 (high-risk loan). The precision for the 0 values is 1 which means that out of all the times that the model predicted a testing data to be the value 0, 100% of those predictions were correct. On the other hand, out of all the times that the model predicted a value of 1, only 84% of those predictions were correct.
+  
+  _
+
+  ```
+                     pre       rec       spe        f1       geo       iba       sup
+
+          0         1.00      0.99      0.99      1.00      0.99      0.99     18765
+          1         0.84      0.99      0.99      0.91      0.99      0.99       619
+        
+        avg/total   0.99      0.99      0.99      0.99      0.99      0.99     19384
+
+  ```
 
 ## Summary
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
+After training the models with unbalanced and unbalance data, and getting different results in terms of precision and recall, we can see that the precision of the second model (resampled balanced using `RandomOverSampler`) is 1% less accurate than the previous model that uses the original data, when predicting the high risk loans.
 
-If you do not recommend any of the models, please justify your reasoning.
+It becomes obvious that it is harder and more important to have a higher accuracy when predicting high risk loans and since the model that uses the original unbalanced data seems to perform better (precision 1% better) I recommend using the first Model with the original data.
+
+---
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+
