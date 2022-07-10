@@ -10,7 +10,16 @@ The historical lending activity used for this analysis is stored in the csv file
 * Independent (x) Features set: loan size, interest rate, borrower income, debt to income, num of accounts, derogatory marks, total debt 
 
 
-In order to check the balance of the label set **value counts** was used. This function counts each category: the healthy loans (0) and the high-risk loans (1).
+In order to check the balance of the label set, the function `value_counts()`  counts each category: the **healthy loans (0)** and the **high-risk loans (1)**.
+```
+labels.value_counts()
+
+```
+And the result shows an imbalanced dataset (original data)
+```
+0    75036
+1     2500
+```
 
 Using the train_test_split function from from sklearn.model_selection the data was split into training and testing datasets
 ```
@@ -46,6 +55,11 @@ As part of this analysis, a second Model was created using the `RandomOverSample
 ```
 random_oversampler = RandomOverSampler(random_state=1)
 X_resampled, y_resampled = random_oversampler.fit_resample(X_train, y_train)
+```
+Applying the `value_counts()` to the resampled data returns the following:
+```
+0    56271
+1    56271
 ```
 
 ## Results
